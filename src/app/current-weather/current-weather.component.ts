@@ -18,7 +18,7 @@ export class CurrentWeatherComponent implements OnInit {
     this.current = {
       city: "Redmond",
       country: "USA",
-      date: 148679989,
+      date: 1560350192,
       image: "",
       temperature: 40,
       description: "sunny"
