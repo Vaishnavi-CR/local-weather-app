@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ICurrentWeather } from "../icurrent-weather";
+import { WeatherService } from '../weather.service';
 
 //@component says that its a component
 //the files talk to each other using the below @component object
@@ -12,16 +13,24 @@ import { ICurrentWeather } from "../icurrent-weather";
   styleUrls: ["./current-weather.component.css"] //styles file can be found here
 })
 export class CurrentWeatherComponent implements OnInit {
-  ngOnInit() {}
-  current: ICurrentWeather;
-  constructor() {
-    this.current = {
-      city: "Redmond",
-      country: "USA",
-      date: 1560350192,
-      image: "",
-      temperature: 40,
-      description: "sunny"
-    } as ICurrentWeather;
+  
+  current: ICurrentWeather = {
+    city: '',
+    country: '',
+    date: 0,
+    description: '',
+    image: '',
+    temperature: 0
+
+  } as ICurrentWeather;
+  
+  constructor(private weatherService: WeatherService) {
+    
+  }
+
+  ngOnInit() {
+
+  this.weatherService.getCurrentWeather('Dallas','US').subscribe(data => this.current = data);
+
   }
 }
